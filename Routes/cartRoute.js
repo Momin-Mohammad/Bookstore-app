@@ -8,7 +8,11 @@ CartRouter.get("/",async(req,res)=>{
 
     try{
         if(cartItems.length > 0){
-            res.send({data:cartItems})
+            var sum = 0;
+            for(var a=0; a<cartItems.length; a++){
+                sum += cartItems[a].cost * cartItems[a].qty
+            }
+            res.send({data:cartItems,total:sum})
         }else{
             res.send({msg:"Cart is Empty!"}) 
         }
@@ -34,8 +38,19 @@ CartRouter.post("/addToCart/:book",async(req,res)=>{
         await addBookToCart.save();
         res.send({msg:"Book Added to cart",book_added_to_cart:addBookToCart});
 }catch(e){
-    res.send({msg:`Error : ${e}`})
+    res.send({msg:`Error : ${e}`});
 }
+})
+
+CartRouter.post("/updateQty/:book",async(req,res)=>{
+    const book = req.params.book;
+    const updateBy = req.body;
+    try{
+        const updatedBook = await CartModel.findOneAndUpdate({book_name:book},{qty:updateBy.amount});
+        res.send({msg:"Updated quantity",data:updatedBook})
+    }catch(e){
+        res.send({msg:`Error : ${e}`});
+    }
 })
 
 CartRouter.post("/removeFromCart/:book",async(req,res)=>{

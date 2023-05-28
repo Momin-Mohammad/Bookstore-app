@@ -2,25 +2,26 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function SignUpPage(){
+export default function LoginPage(){
     const navigate = useNavigate();
     const[email,setEmail] = useState();
-    const[name,setName] = useState();
     const[password,setPassword] = useState();
 
     const submitForm = (e)=>{
         e.preventDefault();
 
         let userData = {
-            name : name,
             email : email,
             password : password
         }
 
-        axios.post("https://bookstore-app.cyclic.app/user/reg",userData)
+        axios.post("https://bookstore-app.cyclic.app/user/login",userData)
         .then(res=>{
             alert(res.data.msg);
-            navigate('/login')
+            if(res.data.msg == "Login Successfull"){
+                navigate('/')   
+            }
+            
         })
         .catch(err=>console.log(err));
     }
@@ -28,12 +29,8 @@ export default function SignUpPage(){
     return(
         <div>
             <form onSubmit={submitForm}>
-                <div>
-  <label>Name</label>
-  <input required type="text" onChange={(e)=>setName(e.target.value)} />
-  </div>
 
-  <div>
+<div>
   <label>Email</label>
   <input required type="email" onChange={(e)=>setEmail(e.target.value)} />
   </div>
@@ -42,11 +39,9 @@ export default function SignUpPage(){
   <label>Password</label>
   <input required type="password" onChange={(e)=>setPassword(e.target.value)} />
   </div>
-  
+
   <input type="submit" value="submit" />
 </form>
-
-<button onClick={()=>navigate("/login")}>Login</button>
         </div>
     )
 }

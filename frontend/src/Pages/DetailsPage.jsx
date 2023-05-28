@@ -1,17 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 export default function DetailsPage(){
+    const navigate = useNavigate();
     const bookName = useParams();
     const[bookImg,setBookImg] = useState("");
 
     useEffect(()=>{
-        axios.get(`https://library-data.onrender.com/books?book_name=${bookName.book}`)
+        axios.post(`https://bookstore-app.cyclic.app/books/${bookName.book}`)
         .then(res=>{
-            setBookImg(res.data[0].image_url)
-        }).catch(err=>console.log("Error"));
+            setBookImg(res.data.data[0].image_url)
+        }).catch(err=>console.log("Error:",err));
     },[])
+
+    const addToCart = ()=>{
+        axios.post(`https://bookstore-app.cyclic.app/cart/addToCart/${bookName.book}`)
+        .then(res=>{
+            alert(res.data.msg)
+        }).catch(err=>console.log(err))
+    }
    
     return(
         <div>
@@ -19,6 +27,7 @@ export default function DetailsPage(){
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
             Eaque error voluptatibus aliquid ipsam, sit tenetur deleniti id consequuntur est libero 
             magni at tempore mollitia! Eaque nostrum in magni atque pariatur.</p>
+            <button onClick={()=>addToCart()}>Add to cart</button>
         </div>
     )
 }

@@ -23,7 +23,7 @@ app.listen(process.env.port,async()=>{
         console.log("Connected to DB");
     }catch(e){
         console.log(e)
-    }
+    }`  `
     console.log("Server is running at port",process.env.PORT)
 })
 

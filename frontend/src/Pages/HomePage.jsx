@@ -8,10 +8,10 @@ export default function HomePage(){
     const[booksData,setBookData] = useState([]);
 
     useEffect(()=>{
-        axios.get("https://library-data.onrender.com/books")
+        axios.get("https://bookstore-app.cyclic.app/books")
         .then(res=>{
-            console.log(res.data)
-            setBookData(res.data);
+            console.log(res.data.data)
+            setBookData(res.data.data);
         }).catch(err=>console.log("Error loading Books"))
     },[])
     return(
