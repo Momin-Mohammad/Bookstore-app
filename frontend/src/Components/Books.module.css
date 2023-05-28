@@ -1,0 +1,6 @@
+.Books_div{
+    border: 2px solid blue;
+    padding : 1%;
+    border-radius: 5px;
+    align-items: start;
+}

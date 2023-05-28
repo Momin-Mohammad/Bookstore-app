@@ -1,0 +1,6 @@
+.Navbar_div{
+    display : flex;
+    justify-content: center;
+    gap : 10%;
+    background-color: tomato;
+}
