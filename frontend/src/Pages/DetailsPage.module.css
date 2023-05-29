@@ -1,0 +1,15 @@
+.DetailsPage_main_div{
+    display: flex;
+    gap: 5%;
+    width: 70%;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.DetailsPage_main_div > div{
+    text-align: start;
+}
+
+img{
+    width: 50%;
+}

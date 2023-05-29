@@ -1,6 +1,18 @@
 .Books_div{
-    border: 2px solid blue;
-    padding : 1%;
     border-radius: 5px;
     align-items: start;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding-top: 3%;
+}
+
+img{
+    width: 70%;
+    height: 50%;
+    border-radius: 5px ;
+}
+
+button{
+    width: 30%;
+    background-color: rgb(156, 221, 228);
+    font-size: 18px;
 }

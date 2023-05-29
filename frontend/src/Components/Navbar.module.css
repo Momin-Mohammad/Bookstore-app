@@ -2,5 +2,8 @@
     display : flex;
     justify-content: center;
     gap : 10%;
-    background-color: tomato;
+    background-color: rgb(26, 128, 156);
+    color: whitesmoke;
+    position: sticky;
+    top: 0px;
 }

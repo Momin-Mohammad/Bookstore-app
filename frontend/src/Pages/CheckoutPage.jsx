@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import styles from "./CheckoutPage.module.css";
 
 export default function CheckoutPage(){
     const[name,setName] = useState('');
@@ -10,6 +11,7 @@ export default function CheckoutPage(){
 
     const submitForm=(e)=>{
         e.preventDefault();
+        alert("Order Placed")
         let formData = {
             name : name,
             email : email,
@@ -28,7 +30,7 @@ export default function CheckoutPage(){
         },[])
 
     return(
-        <div>
+        <div className={styles.main_div}>
             <form onSubmit={submitForm}>
                 <div>
   <label>Full Name</label>
@@ -47,15 +49,13 @@ export default function CheckoutPage(){
 
   <div>
   <label>Address</label>
-  <input required type="number" onChange={(e)=>setAddress(e.target.value)} />
+  <input required type="text" onChange={(e)=>setAddress(e.target.value)} />
   </div>
   
-  <input type="submit" value="submit" />
+  <input className={styles.submit_btn} type="submit" value="submit" />
 </form>
 
 <h2>Total Amount : {total}</h2>
-
-<button onClick={()=>alert("Order Placed")}>Place Order</button>
         </div>
     )
 }

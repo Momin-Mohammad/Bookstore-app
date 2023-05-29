@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./CheckoutPage.module.css";
 
 export default function LoginPage(){
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function LoginPage(){
     }
 
     return(
-        <div>
+        <div className={styles.main_div}>
             <form onSubmit={submitForm}>
 
 <div>
@@ -40,7 +41,7 @@ export default function LoginPage(){
   <input required type="password" onChange={(e)=>setPassword(e.target.value)} />
   </div>
 
-  <input type="submit" value="submit" />
+  <input className={styles.submit_btn} type="submit" value="submit" />
 </form>
         </div>
     )

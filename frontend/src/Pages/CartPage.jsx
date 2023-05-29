@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import CartItem from "../Components/CartItem";
 import { useNavigate } from "react-router-dom";
+import styles from "./CartPage.module.css";
 
 export default function CartPage(){
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function CartPage(){
     },[])
 
     return(
-        <div>
+        <div className={styles.cartPage_main_div}>
             {
               cartItem.length == 0 ?
               <h2>The Cart is Empty</h2>  

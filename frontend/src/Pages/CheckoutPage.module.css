@@ -1,0 +1,31 @@
+.main_div{
+    width: 70%;
+    margin: auto;
+    padding: 1% 2%;
+    margin-top: 3%;
+    background-color: rgb(202, 235, 248);
+    border-radius: 20px;
+}
+
+form > div{
+ text-align: start;
+ margin : 1%
+}
+
+label{
+    font-weight: 600;
+}
+
+input{
+    width: 98%;
+    font-size: 20px;
+    padding: 1%;
+}
+
+.submit_btn{
+    width: 50%;
+    margin : 1%;
+    background-color: rgb(156, 221, 228);
+    font-size: 25px;
+    border-radius: 10px;
+}

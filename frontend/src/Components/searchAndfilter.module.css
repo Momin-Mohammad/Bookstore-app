@@ -1,6 +1,21 @@
 .Search_main_div{
     display: flex;
     justify-content: center;
-    gap: 5%;
+    gap: 10%;
     margin: 2% 0%;
+    background-color: rgb(45, 165, 198);
+}
+
+.Search_main_div > div{
+    display: flex;
+    margin: 1%;
+    padding: 1%;
+    font-size: 18px; 
+}
+
+.selectTag_div > select{
+    margin: 1%;
+    padding: 1%;
+    font-size: 18px; 
+     
 }
