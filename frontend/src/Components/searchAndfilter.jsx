@@ -1,25 +1,27 @@
+import { useState } from "react";
 import styles from "./searchAndfilter.module.css";
 
-export default function Search(){
+export default function Search({sortByPrice,sortByGenre,searchBook}){
+   const[book,setBook] = useState();
     return(
         <div className={styles.Search_main_div}>
             <div>
-                <select>
-                    <option value="">Filter By Price</option>
+                <select onChange={(e)=>sortByPrice(e.target.value)}>
+                    <option value="sort">Filter By Price</option>
                     <option value="asc">Low to High</option>
                     <option value="desc">High to low</option>
                 </select>
 
-                <select>
-                    <option value="">Filter By Author</option>
-                    <option value="j.k.rowling">J.K.Rowling</option>
-                    <option value="david">David Benioff</option>
+                <select onChange={(e)=>sortByGenre(e.target.value)}>
+                    <option value="filter">Filter By genre</option>
+                    <option value="horror">Horror</option>
+                    <option value="thriller">Thriller</option>
                 </select>
             </div>
 
             <div>
-                <input placeholder="Enter Book Name"/>
-                <button>Search</button>
+                <input onChange={(e)=>setBook(e.target.value)} type="text" placeholder="Enter Book Name"/>
+                <button onClick={()=>searchBook(book)}>Search</button>
             </div>
         </div>
     )

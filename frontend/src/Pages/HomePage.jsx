@@ -6,17 +6,48 @@ import styles from "./HomePage.module.css";
 
 export default function HomePage(){
     const[booksData,setBookData] = useState([]);
+    const [sort,setSort] = useState('sort');
+    const [filter,setFilter] = useState('filter');
 
     useEffect(()=>{
-        axios.get("https://bookstore-app.cyclic.app/books")
+        axios.get(`https://bookstore-app.cyclic.app/books/${sort}/${filter}`)
         .then(res=>{
-            console.log(res.data.data)
             setBookData(res.data.data);
-        }).catch(err=>console.log("Error loading Books"))
-    },[])
+        }).catch(err=>console.log("Error loading Books"));
+      
+    },[sort,filter])
+
+    const sortByPrice = (order)=>{
+        setSort(order)
+       
+    }
+
+    const sortByGenre = (genre)=>{
+        setFilter(genre);
+    }
+
+    const searchBook = (book)=>{
+        if(book === "" || book === undefined){
+            axios.get("https://bookstore-app.cyclic.app/books")
+            .then(res=>{
+                setBookData(res.data.data);
+            }).catch(err=>console.log("Error loading Books"));
+        }else{
+            axios.post(`https://bookstore-app.cyclic.app/books/${book}`)
+            .then(res=>{
+                console.log(res.data)
+                setBookData(res.data.data);
+            }).catch(err=>console.log("Error loading Books"));
+        }
+    }
+
     return(
         <div>
-            <Search/>
+            <Search 
+            sortByPrice = {sortByPrice}
+            sortByGenre = {sortByGenre}
+            searchBook = {searchBook}
+            />
 
             <div className={styles.Books_div}>
                 {
@@ -30,7 +61,7 @@ export default function HomePage(){
                     price = {ele.cost}
                      />
                     )
-                      : <h1>Loading Books...</h1>
+                      : <h1>No Book Found</h1>
                 }
             </div>
         </div>
